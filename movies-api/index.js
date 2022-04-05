@@ -14,7 +14,7 @@ const port = process.env.PORT;
 
 app.use(express.json());
 app.use('/api/movies', moviesRouter);
-app.use('/api/genres',genresRouter);
+app.use('/api/genres', genresRouter);
 //Users router
 app.use('/api/users', usersRouter);
 
