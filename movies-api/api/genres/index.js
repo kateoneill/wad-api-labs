@@ -1,10 +1,10 @@
 import express from 'express';
 import { genres } from './genresData';
-import genre from '.genreModel';
+import Genre from './genreModel';
 
 const router = express.Router(); 
 router.get('/', (req, res) => {
-    res.json(genre);
+    res.json(Genre);
 });
 
 export default router;
