@@ -18,9 +18,9 @@ router.post('/', asyncHandler(async (req, res) => {
             code: 201,
             msg: 'Successful created new user.',
         });
-    }
-    else {  //NEW CODE!!!
+    } else {  //NEW CODE!!!
         const user = await User.findByUserName(req.body.username);
+        console.log(user)
         if (user.comparePassword(req.body.password)) {
             req.session.user = req.body.username;
             req.session.authenticated = true;
@@ -46,21 +46,6 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-router.post('/:id/favourites', async (req, res) => {
-  const newFavourite = req.body;
-  if (newFavourite && newFavourite.id) {
-      const user = await User.findById(req.params.id);
-      if (user) {
-          user.favourites.push(newFavourite);
-          user.save();
-          res.status(201).json({ code: 201, msg: "Added Favourite" });
-      } else {
-          res.status(404).json({ code: 404, msg: 'Unable to add favourites' });
-      }
-  }
-});
-
-/// ... Code as Before
 router.post('/:id/favourites', async (req, res) => {
   const newFavourite = req.body;
   if (newFavourite && newFavourite.id) {
